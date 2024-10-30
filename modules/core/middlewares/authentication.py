@@ -37,16 +37,8 @@ class AuthenticationMiddleware(BaseHTTPMiddleware):
 
         if request.method != 'OPTIONS':
             try:
-                # decoded_jwt = jwt.decode(
-                #     token, SECRET_KEY, algorithms=['HS512'])
-                decoded_jwt = {
-                    "token_type": "access",
-                    "exp": 1728308857,
-                    "iat": 1728305831,
-                    "jti": "164cfd77462344e4aa0dacf50cfc0b0b",
-                    "user_id": 640,
-                    "iss": "auth-api-di"
-                }
+                decoded_jwt = jwt.decode(
+                    token, SECRET_KEY, algorithms=['HS512'])
 
                 user = Database(DB_NAME_USERS).list(
                     f"""
